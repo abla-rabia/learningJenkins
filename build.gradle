@@ -1,0 +1,44 @@
+plugins {
+  id 'java'
+  id 'jacoco'
+  id("org.sonarqube") version "4.4.0.3356"
+  id 'maven-publish'
+
+}
+
+group = 'com.example'
+version = '1.0'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation 'io.cucumber:cucumber-java:6.0.0'
+  testImplementation 'io.cucumber:cucumber-junit:6.0.0'
+  testImplementation 'junit:junit:4.12'
+}
+
+test {
+  finalizedBy jacocoTestReport
+  finalizedBy 'sonar'
+}
+
+publishing {
+  repositories {
+    maven {
+      url 'https://mymavenrepo.com/repo/poVAP7h6pRhBZFljhmFl/'
+      credentials {
+        username = project.findProperty("myMavenRepoUsername") ?: ""
+        password = project.findProperty("myMavenRepoPassword") ?: ""
+      }
+    }
+  }
+
+  publications {
+    maven(MavenPublication) {
+      from components.java
+    }
+  }
+}
+
