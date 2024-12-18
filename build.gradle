@@ -19,10 +19,7 @@ dependencies {
   testImplementation 'junit:junit:4.12'
 }
 
-test {
-  finalizedBy jacocoTestReport
-  finalizedBy 'sonar'
-}
+
 
 publishing {
   repositories {
