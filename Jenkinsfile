@@ -5,10 +5,11 @@ stages {
  steps {
       bat "./gradlew build"
       archiveArtifacts 'build/libs/*.jar'
-}
+}}
  stage ('test') {
 steps {
     bat "./gradle test"
 }
  }
  }
+}
