@@ -3,7 +3,7 @@ pipeline {
 stages {
  stage ('build') {    // la phase build
  steps {
-      bat "./gradlew build"
+      bat "./gradlew build" 
       archiveArtifacts 'build/libs/*.jar'
 }}
  stage ('test') {
