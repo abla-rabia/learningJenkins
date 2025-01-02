@@ -3,8 +3,7 @@ agent any
 stages {
  stage('Test') {
      steps {
-         sh './gradlew test'
+         bat './gradlew test'
      }
- }
 }
 }
