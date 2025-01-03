@@ -20,8 +20,18 @@ stages {
      }
 
 }
-
-
+stage("Code Analysis"){
+            steps{
+                withSonarQubeEnv('sonar') {
+                    bat "./gradlew sonar"
+                }
+            }
+        }
+        stage("Code Quality") {
+                    steps {
+                        waitForQualityGate abortPipeline: true
+                    }
+                }
         stage("Build") {
                     steps {
                         bat './gradlew build'
@@ -43,6 +53,7 @@ stages {
                                            to: 'la_rabia@esi.dz'
                               }
                           }
+
 
                 }
 }
