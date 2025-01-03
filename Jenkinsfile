@@ -8,7 +8,7 @@ stages {
          archiveArtifacts artifacts: '**/build/test-results/test/*.xml', allowEmptyArchive: true
          cucumber buildStatus: 'UNSTABLE',
                                   reportTitle: 'CucumberReport',
-                                  fileIncludePattern: 'reports/report.json',
+                                  fileIncludePattern: 'reports/example-report.json',
                                   trendsLimit: 10,
                                   classifications: [
                                         [
@@ -17,6 +17,14 @@ stages {
                                         ]
                                   ]
      }
+
 }
+stage("Code Analysis"){
+            steps{
+                withSonarQubeEnv('sonar') {
+                    bat "./gradlew sonar"
+                }
+            }
+        }
 }
 }
