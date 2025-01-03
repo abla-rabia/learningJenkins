@@ -3,6 +3,7 @@ agent any
 stages {
  stage('Test') {
      steps {
+     step{
          bat './gradlew test'
          junit '**/build/test-results/test/*.xml'
          archiveArtifacts artifacts: '**/build/test-results/test/*.xml', allowEmptyArchive: true
@@ -16,7 +17,7 @@ stages {
                                              'value': 'Firefox'
                                         ]
                                   ]
-     }
+     }}
 
 }
 stage("Code Analysis"){
