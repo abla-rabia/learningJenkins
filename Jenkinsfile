@@ -26,5 +26,10 @@ stage("Code Analysis"){
                 }
             }
         }
+        stage("Code Quality") {
+                    steps {
+                        waitForQualityGate abortPipeline: true
+                    }
+                }
 }
 }
