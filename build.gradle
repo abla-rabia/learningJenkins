@@ -18,7 +18,15 @@ dependencies {
   testImplementation 'io.cucumber:cucumber-junit:6.0.0'
   testImplementation 'junit:junit:4.12'
 }
-
+cucumber {
+  version = '5.8.5'
+  plugin = [
+          'json:build/reports/cucumber/cucumber.json',   // Rapport JSON
+          'html:build/reports/cucumber/cucumber.html'    // Rapport HTML (optionnel)
+  ]
+  features = file('src/Features') // Le dossier contenant vos fichiers .feature
+  glue = ['com.example']  // Le package contenant vos step definitions
+}
 
 
 publishing {

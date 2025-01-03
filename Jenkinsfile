@@ -8,7 +8,7 @@ stages {
          archiveArtifacts artifacts: '**/build/test-results/test/*.xml', allowEmptyArchive: true
          cucumber buildStatus: 'UNSTABLE',
                                   reportTitle: 'CucumberReport',
-                                  fileIncludePattern: 'target/report.json',
+                                  fileIncludePattern: 'build/reports/cucumber/cucumber.json',
                                   trendsLimit: 10,
                                   classifications: [
                                         [
