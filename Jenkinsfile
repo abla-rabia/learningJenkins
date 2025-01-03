@@ -4,14 +4,19 @@ stages {
  stage('Test') {
      steps {
          bat './gradlew test'
+         junit '**/build/test-results/test/*.xml'
+         archiveArtifacts artifacts: '**/build/test-results/test/*.xml', allowEmptyArchive: true
+         cucumber buildStatus: 'UNSTABLE',
+                                  reportTitle: 'CucumberReport',
+                                  fileIncludePattern: 'target/report.json',
+                                  trendsLimit: 10,
+                                  classifications: [
+                                        [
+                                             'key': 'Browser',
+                                             'value': 'Firefox'
+                                        ]
+                                  ]
      }
 }
-stage('Archive Test Results') {
-            steps {
-                junit '**/build/test-results/test/*.xml'
-                archiveArtifacts artifacts: '**/build/test-results/test/*.xml', allowEmptyArchive: true
-            }
-        }
-
 }
 }
