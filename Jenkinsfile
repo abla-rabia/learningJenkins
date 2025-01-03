@@ -46,7 +46,6 @@ stage("Code Analysis"){
                     steps {
                         bat './gradlew publish'
                     }
-                    post {
                           post {
                               success {
                                   emailext subject: "Build Success !",
@@ -55,7 +54,7 @@ stage("Code Analysis"){
                               }
                           }
 
-                    }
+
                 }
 }
 }
