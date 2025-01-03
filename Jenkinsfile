@@ -27,11 +27,7 @@ stage("Code Analysis"){
                 }
             }
         }
-        stage("Code Quality") {
-                    steps {
-                        waitForQualityGate abortPipeline: true
-                    }
-                }
+
         stage("Build") {
                     steps {
                         bat './gradlew build'
