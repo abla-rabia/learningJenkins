@@ -3,7 +3,7 @@ agent any
 stages {
  stage('Test') {
      steps {
-     step{
+
          bat './gradlew test'
          junit '**/build/test-results/test/*.xml'
          archiveArtifacts artifacts: '**/build/test-results/test/*.xml', allowEmptyArchive: true
@@ -17,7 +17,7 @@ stages {
                                              'value': 'Firefox'
                                         ]
                                   ]
-     }}
+     }
 
 }
 stage("Code Analysis"){
@@ -47,18 +47,14 @@ stage("Code Analysis"){
                         bat './gradlew publish'
                     }
                     post {
-                          success {
-                               notifyEvents message: 'Success ',
-                               mail to: 'la_rabia@esi.dz',
-                               subject: "Success",
-                               body: "Deployment successful"
+                          post {
+                              success {
+                                  emailext subject: "Build Success !",
+                                           body: "Good news! The build was successful.",
+                                           to: 'la_rabia@esi.dz'
+                              }
                           }
-                          failure {
-                                notifyEvents message: 'Failure',
-                                mail to: 'la_rabia@esi.dz',
-                                subject: "Failure",
-                                body: "Something went wrong "
-                          }
+
                     }
                 }
 }
