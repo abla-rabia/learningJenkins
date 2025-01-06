@@ -19,7 +19,15 @@ dependencies  {
   testImplementation 'junit:junit:4.12'
  }
 
+sonarqube {
+  properties {
+    property "sonar.projectName", "jenkins"  // Nom du projet
+    property "sonar.host.url", "http://localhost:9000"  // URL de votre instance SonarQube
+    property "sonar.login", "admin"
+    property "sonar.password", "root"
 
+  }
+}
 
 publishing {
   repositories {
