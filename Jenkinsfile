@@ -76,7 +76,7 @@ stage("Code Analysis"){
                         
                         Check attached logs for details.
                     """,
-                    to: 'la_rabia@esi.dz',
+                    to: 'ryaaeleanor@gmail.com',
                     mimeType: 'text/html',
                     attachLog: true
                 )
