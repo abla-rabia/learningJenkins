@@ -42,7 +42,7 @@ stage("Code Analysis") {
                 }
 
 
-                stage("Deploy & notification"){
+                stage("Deploy & notification") {
                     steps {
                         bat './gradlew publish'
                     }
