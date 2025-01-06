@@ -20,9 +20,14 @@ dependencies  {
 
 sonarqube {
   properties {
-    property "sonar.projectName", "jenkins"  // Nom du projet
-    property "sonar.host.url", "http://localhost:9000"  // URL de votre instance SonarQube
+    property "sonar.projectName", "jenkins"
+    property "sonar.host.url", "http://localhost:9000"
     property "sonar.login", "squ_a460e271b8fef972157eb54b56bfbb57bad8a5c8"
+    // Ajoutez ces propriétés
+    property "sonar.qualitygate.wait", "true"
+    property "sonar.qualitygate.timeout", "300"
+    property "sonar.ws.timeout", "300"
+    property "sonar.ce.timeout", "300"
   }
 }
 publishing {
