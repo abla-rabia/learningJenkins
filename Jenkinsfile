@@ -29,10 +29,19 @@ stage("Code Analysis"){
         }
  
         stage("Code Quality") {
-                    steps {
-                        waitForQualityGate abortPipeline: true
-                    }
+    steps {
+        script {
+            echo "Waiting for quality gate..."
+            timeout(time: 5, unit: 'MINUTES') {
+                def qg = waitForQualityGate()
+                echo "Quality gate status: ${qg.status}"
+                if (qg.status != 'OK') {
+                    error "Quality gate failure: ${qg.status}"
                 }
+            }
+        }
+    }
+}
         stage("Build")  {
                     steps {
                         bat './gradlew build'
