@@ -13,7 +13,6 @@ stages {
                                   trendsLimit: 10,
                                   classifications: [
                                         [ 
-                                         
                                              'key': 'Browser',
                                              'value': 'Firefox'
                                         ]
@@ -28,6 +27,7 @@ stage("Code Analysis"){
                 }
             }
         }
+ 
         stage("Code Quality") {
                     steps {
                         waitForQualityGate abortPipeline: true
