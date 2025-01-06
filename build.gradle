@@ -23,7 +23,7 @@ sonarqube {
   properties {
     property "sonar.projectName", "jenkins"  // Nom du projet
     property "sonar.host.url", "http://localhost:9000"  // URL de votre instance SonarQube
-    property "sonar.login", "sqp_6e5090ab15e8a2f4f0576d7d5cd60fae2378133f"
+    property "sonar.login", "squ_a460e271b8fef972157eb54b56bfbb57bad8a5c8"
   }
 }
 publishing {
