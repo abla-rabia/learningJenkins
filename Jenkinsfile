@@ -32,7 +32,7 @@ stage("Code Analysis") {
                         waitForQualityGate abortPipeline: true
                     }
                 }
-        stage("Build") {
+        stage("Build")  {
                     steps {
                         bat './gradlew build'
                         bat './gradlew javadoc'
