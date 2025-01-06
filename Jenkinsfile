@@ -12,7 +12,8 @@ stages {
                                   fileIncludePattern: 'reports/example-report.json',
                                   trendsLimit: 10,
                                   classifications: [
-                                        [
+                                        [ 
+                                         
                                              'key': 'Browser',
                                              'value': 'Firefox'
                                         ]
