@@ -58,19 +58,39 @@ stage("Code Analysis"){
                 }
 
 
-                stage("Deploy & notification"){
-                    steps {
-                        bat './gradlew publish'
-                    }
-                          post {
-                              success {
-                                  emailext subject: "Build Success !",
-                                           body: "Good news! The build was successful.",
-                                           to: 'la_rabia@esi.dz'
-                              }
-                          }
-
-
-                }
+                stage("Deploy & notification") {
+    steps {
+        bat './gradlew publish'
+    }
+    post {
+        success {
+            script {
+                emailext (
+                    subject: "Build Success: ${currentBuild.fullDisplayName}",
+                    body: """
+                        Build succeeded!
+                        
+                        Project: ${env.JOB_NAME}
+                        Build Number: ${env.BUILD_NUMBER}
+                        Build URL: ${env.BUILD_URL}
+                        
+                        Check attached logs for details.
+                    """,
+                    to: 'la_rabia@esi.dz',
+                    mimeType: 'text/html',
+                    attachLog: true
+                )
+                echo "Email notification sent"
+            }
+        }
+        failure {
+            emailext (
+                subject: "Build Failed: ${currentBuild.fullDisplayName}",
+                body: "The build failed. Check the logs for details.",
+                to: 'la_rabia@esi.dz'
+            )
+        }
+    }
+}
 }
 }
