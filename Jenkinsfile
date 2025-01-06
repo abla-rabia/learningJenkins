@@ -20,6 +20,14 @@ stages {
      }
 
 }
+ stage("Test Connection") {
+    steps {
+        script {
+            bat 'curl -v http://localhost:9000/api/system/status'
+            bat 'curl -v http://localhost:8080'
+        }
+    }
+}
 stage("Code Analysis"){
             steps{
                 withSonarQubeEnv('sonar') {
@@ -31,12 +39,10 @@ stage("Code Analysis"){
         stage("Code Quality") {
     steps {
         script {
-            echo "Waiting for quality gate..."
-            timeout(time: 5, unit: 'MINUTES') {
-                def qg = waitForQualityGate()
-                echo "Quality gate status: ${qg.status}"
+            timeout(time: 3, unit: 'MINUTES') {
+                def qg = waitForQualityGate(webhookSecretId: 'webhook-secret')
                 if (qg.status != 'OK') {
-                    error "Quality gate failure: ${qg.status}"
+                    error "Quality Gate failed: ${qg.status}"
                 }
             }
         }
