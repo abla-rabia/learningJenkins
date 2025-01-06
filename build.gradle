@@ -25,7 +25,6 @@ sonarqube {
     property "sonar.host.url", "http://localhost:9000"  // URL de votre instance SonarQube
     property "sonar.login", "admin"
     property "sonar.password", "root"
-
   }
 }
 
