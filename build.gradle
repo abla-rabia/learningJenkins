@@ -26,7 +26,6 @@ sonarqube {
     property "sonar.login", "sqp_6e5090ab15e8a2f4f0576d7d5cd60fae2378133f"
   }
 }
-
 publishing {
   repositories {
     maven {
