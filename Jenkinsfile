@@ -3,6 +3,7 @@ agent any
 stages {
  stage('Test') {
      steps {
+      
 
          bat './gradlew test'
          junit '**/build/test-results/test/*.xml'
