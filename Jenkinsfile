@@ -65,7 +65,13 @@ stage("Code Analysis"){
     }
     post {
         success {
+         
             script {
+             slackSend(
+                                                  channel: '#sonarqube',
+                                                  color: 'good',
+                                                  message: 'Deployment avec succés'
+                                                  )
                 emailext (
                     subject: "Build Success: ${currentBuild.fullDisplayName}",
                     body: """
@@ -85,6 +91,13 @@ stage("Code Analysis"){
             }
         }
         failure {
+         
+                                              slackSend(
+                                              channel: '#sonarqube',
+                                              color: 'danger',
+                                              message: 'Deployment a échoué '
+                                          )
+                                      
             emailext (
                 subject: "Build Failed: ${currentBuild.fullDisplayName}",
                 body: "The build failed. Check the logs for details.",
