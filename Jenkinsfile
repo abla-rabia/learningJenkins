@@ -2,7 +2,8 @@ pipeline {
 agent any
 stages {
  stage('Test') {
-     steps {
+     steps { 
+      
       
          bat './gradlew test'
          junit '**/build/test-results/test/*.xml'
