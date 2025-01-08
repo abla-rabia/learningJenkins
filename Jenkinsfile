@@ -7,6 +7,7 @@ stages {
          junit '**/build/test-results/test/*.xml'
          archiveArtifacts artifacts: '**/build/test-results/test/*.xml', allowEmptyArchive: true
          cucumber buildStatus: 'UNSTABLE',
+          
                                   reportTitle: 'CucumberReport',
                                   fileIncludePattern: 'reports/example-report.json',
                                   trendsLimit: 10,
