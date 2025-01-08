@@ -9,6 +9,7 @@ stages {
          junit '**/build/test-results/test/*.xml'
       
          archiveArtifacts artifacts: '**/build/test-results/test/*.xml', allowEmptyArchive: true
+         archiveArtifacts artifacts: '**/build/reports/jacoco/test/html/*.*, allowEmptyArchive: true
          cucumber buildStatus: 'UNSTABLE',
           
                                   reportTitle: 'CucumberReport',
